@@ -21,6 +21,7 @@ jobs:
       - run: python -m pytest -q
       - run: python scripts/execute_notebook.py --kernel neurofisiologia
       - run: python scripts/verify_notebook_controls.py --kernel neurofisiologia
+      - run: python scripts/verify_circuit_figures.py
       - run: python -m neurofisiologia.examples
       - name: Comprobar frontera de bibliografía
         run: |

@@ -19,6 +19,13 @@ from typing import Literal
 REGION_COLORS = ("tab:blue", "tab:orange", "tab:green")
 
 
+def _circuit_current(value: float) -> str:
+    """pA firmados: no redondear una corriente pequeña con flecha a cero."""
+    if value == 0:
+        return "0.000"
+    return f"{value:+.3e}" if 0 < abs(value) < .0005 or abs(value) >= 1e4 else f"{value:+.3f}"
+
+
 def _conditions(parameters: RodParameters) -> str:
     return (f"C={parameters.capacitance_pf} pF; gL={parameters.leak_ns} nS; E={parameters.reversal_mv} mV\n"
             f"gOI={parameters.g_oi_ns:g}, gIT={parameters.g_it_ns:g} nS. Ilustrativos, no calibrados; curvas simuladas.")
@@ -146,11 +153,14 @@ def plot_circuit(parameters: RodParameters = RodParameters(), *,
                   time_ms: float | None = None) -> tuple[Figure, Axes]:
     """F1/F5: circuito vectorial equivalente, no anatómico y no a escala.
 
-    Sin result, las flechas indican sentidos positivos de referencia. Con
-    result y tiempo en ms, se usa la muestra más cercana: V (mV), I (pA),
-    flechas según el signo real de Ioi (O→I), Iit (I→T) y entrada foto.
-    No se dibuja flecha para |I|≤1e-10 pA. Cada nodo tiene C (pF), fuga
-    (nS) y fuente E (mV) hacia la referencia exterior 0 mV. No hay sinapsis.
+    Las flechas rojas representan solo las corrientes axiales: orientación
+    positiva de referencia sin result, o sentido efectivo en la muestra más
+    cercana al tiempo (ms) con result. Se omiten si |I|≤1e-10 pA. La foto
+    se rotula como variación algebraica entrante en O, nunca como flujo
+    iónico saliente. V instantáneo y E de reversión (mV) se distinguen.
+    Cada nodo tiene C (pF), fuga (nS) y fuente ideal E con polaridad explícita
+    según su signo respecto del exterior 0 mV; E=0 no tiene polaridad.
+    C/g/E son constantes e ilustrativos. No hay sinapsis ni datos medidos.
     """
     if result is not None:
         parameters = result.parameters
@@ -159,10 +169,10 @@ def plot_circuit(parameters: RodParameters = RodParameters(), *,
         index = int(np.argmin(abs(result.time_ms-time_ms)))
         components = decompose_currents(result.time_ms[index], result.voltage_mv[:, index], parameters, result.stimulus)
     if result is None:
-        fig, axis = plt.subplots(figsize=(12, 6), layout="constrained")
+        fig, axis = plt.subplots(figsize=(14, 8), layout="constrained")
     else:
-        fig, panels = plt.subplots(2, 1, figsize=(12, 9), layout="constrained",
-                                   gridspec_kw={"height_ratios": [4, 1.5]})
+        fig, panels = plt.subplots(2, 1, figsize=(14, 11), layout="constrained",
+                                   gridspec_kw={"height_ratios": [4, 1.4]})
         axis, timeline = panels
         for j, color in enumerate(REGION_COLORS):
             timeline.plot(result.time_ms, result.voltage_mv[j], color=color, label="OIT"[j])
@@ -171,61 +181,91 @@ def plot_circuit(parameters: RodParameters = RodParameters(), *,
         timeline.set(xlabel="Tiempo (ms)", ylabel="V simulado (mV)")
         timeline.legend(ncol=4, fontsize=9)
         timeline.grid(alpha=.2)
-    positions = (1.5, 5.5, 9.5)
-    axis.set(xlim=(-.7, 11.7), ylim=(-.4, 5.7))
+    positions = (2., 8., 14.)
+    axis.set(xlim=(-2, 18), ylim=(-1.3, 9.4), aspect="equal")
     axis.axis("off")
-    axis.plot([.4, 10.6], [0, 0], color="black")
-    axis.text(5.5, -.28, "Referencia exterior: 0 mV (potencial interior relativo al exterior)", ha="center")
+    photo_label = ("I_photo(t) = −Σ A_k h(t − t_k)  [pA]" if result is None
+                   else f"I_photo(t) = {_circuit_current(float(components['photocurrent_pa'][0]))} pA")
+    axis.text(8, 8.25, "Entrada algebraica solo en O · corriente entrante positiva\n"
+              + photo_label + "\nVariación de corriente entrante de oscuridad; no indica flujo iónico absoluto hacia fuera.",
+              ha="center", va="center", fontsize=11, color="tab:purple",
+              bbox={"boxstyle": "round,pad=0.6", "facecolor": "#faf6ff", "edgecolor": "tab:purple"},
+              gid="photocurrent-algebraic")
+    axis.plot([.9, 15.1], [0, 0], color="black")
+    axis.text(8, -.45, "Referencia exterior: 0 mV · V: potencial interior instantáneo respecto del exterior",
+              ha="center", va="center", fontsize=11, gid="exterior-reference")
+    axis.text(8, -.95, "E: potencial de reversión de la fuga (fuente equivalente fija); no es V instantáneo",
+              ha="center", va="center", fontsize=11, gid="reversal-definition")
     for region, x, color, capacitance, leak, reversal in zip("OIT", positions, REGION_COLORS,
             parameters.capacitance_pf, parameters.leak_ns, parameters.reversal_mv):
-        axis.add_patch(Circle((x, 3.6), .18, facecolor=color, edgecolor="black"))
-        axis.text(x, 4.75, region, color=color, ha="center", fontsize=16, weight="bold")
+        axis.add_patch(Circle((x, 4.3), .18, facecolor=color, edgecolor="black"))
+        axis.text(x, 6.75, region, color=color, ha="center", fontsize=16, weight="bold")
         if result is not None:
             j = "OIT".index(region)
-            axis.text(x, 4.3, f"V={result.voltage_mv[j,index]:.3f} mV", ha="center")
-            axis.text(x, 5.2, f"I net={components['net_current_pa'][j]:+.3f} pA", ha="center", fontsize=9)
-        axis.plot([x-.45, x-.45], [3.6, 1.9], color="black")
-        axis.plot([x-.85, x-.05], [1.9, 1.9], color="black")
-        axis.plot([x-.85, x-.05], [1.7, 1.7], color="black")
-        axis.plot([x-.45, x-.45], [1.7, 0], color="black")
-        axis.text(x-.55, 2.15, f"C={capacitance:g} pF", ha="right", fontsize=10)
-        branch = x+.7
-        axis.plot([x, branch, branch], [3.6, 3.6, 2.1], color="black")
+            axis.text(x, 6.1, f"V_{region}={result.voltage_mv[j,index]:+.3f} mV", ha="center",
+                      fontsize=12, gid=f"voltage-{region}")
+            axis.text(x, 5.5, f"I neta={_circuit_current(float(components['net_current_pa'][j]))} pA", ha="center",
+                      fontsize=11, gid=f"net-current-{region}")
+        cap_branch = x-1.1
+        axis.plot([x, cap_branch, cap_branch], [4.3, 4.3, 2.2], color="black")
+        axis.plot([cap_branch-.4, cap_branch+.4], [2.2, 2.2], color="black")
+        axis.plot([cap_branch-.4, cap_branch+.4], [2., 2.], color="black")
+        axis.plot([cap_branch, cap_branch], [2., 0], color="black")
+        axis.text(cap_branch-.15, 2.8, f"C={capacitance:g}\npF", ha="right", va="center", fontsize=11)
+        branch = x+1.1
+        axis.plot([x, branch, branch], [4.3, 4.3, 3.], color="black")
         axis.plot([branch, branch-.15, branch+.15, branch-.15, branch+.15, branch],
-                  [2.1, 1.95, 1.8, 1.65, 1.5, 1.35], color="black")
-        axis.plot([branch, branch], [1.35, .8], color="black")
-        axis.plot([branch-.35, branch+.35], [.8, .8], color="black")
-        axis.plot([branch-.2, branch+.2], [.6, .6], color="black")
-        axis.plot([branch, branch], [.6, 0], color="black")
-        axis.text(branch+.25, 1.6, f"gL={leak:g}\nnS", fontsize=10)
-        axis.text(branch+.25, .6, f"E={reversal:g}\nmV", fontsize=10)
+                  [3., 2.84, 2.68, 2.52, 2.36, 2.2], color="black")
+        axis.plot([branch, branch], [2.2, 1.6], color="black")
+        axis.add_patch(Circle((branch, 1.15), .45, fill=False, edgecolor="black",
+                              gid=f"reversal-source-{region}"))
+        if reversal == 0:
+            axis.text(branch, 1.15, "0", ha="center", va="center", fontsize=12,
+                      gid=f"source-zero-{region}")
+        else:
+            upper, lower = (("+", "−") if reversal > 0 else ("−", "+"))
+            axis.text(branch, 1.35, upper, ha="center", va="center", fontsize=12,
+                      gid=f"source-upper-{region}")
+            axis.text(branch, .95, lower, ha="center", va="center", fontsize=12,
+                      gid=f"source-lower-{region}")
+        axis.plot([branch, branch], [.7, 0], color="black")
+        axis.text(branch+.4, 2.65, f"gL={leak:g}\nnS", va="center", fontsize=11)
+        reversal_label = f"{reversal:+g}" if reversal != 0 else "0"
+        axis.text(branch+.65, 1.15, f"E={reversal_label}\nmV", va="center", fontsize=11,
+                  gid=f"reversal-label-{region}")
     for left, right, conductance, name, key in (
         (positions[0], positions[1], parameters.g_oi_ns, "O→I", "axial_current_oi_pa"),
         (positions[1], positions[2], parameters.g_it_ns, "I→T", "axial_current_it_pa"),
     ):
         center = (left+right)/2
-        axis.plot([left+.18, center-.5], [3.6, 3.6], color="black")
-        axis.plot([center+.5, right-.18], [3.6, 3.6], color="black")
-        axis.plot(np.linspace(center-.5, center+.5, 7),
-                  [3.6, 3.72, 3.48, 3.72, 3.48, 3.72, 3.6], color="black")
-        axis.text(center, 3.95, f"g_{name.replace('→','')}={conductance:g} nS", ha="center")
-        current = 1. if result is None else float(components[key])
-        label = f"I {name} (sentido +)" if result is None else f"I {name}={current:+.3f} pA"
-        axis.text(center, 2.75, label, ha="center", fontsize=10)
+        axis.plot([left+.18, center-.5], [4.3, 4.3], color="black")
+        axis.plot([center+.5, right-.18], [4.3, 4.3], color="black")
+        if conductance == 0:
+            axis.plot([center-.5, center-.15], [4.3, 4.3], color="black")
+            axis.plot([center+.15, center+.5], [4.3, 4.3], color="black")
+            axis.scatter([center-.15, center+.15], [4.3, 4.3], facecolors="white", edgecolors="black", s=20)
+        else:
+            axis.plot(np.linspace(center-.5, center+.5, 7),
+                      [4.3, 4.42, 4.18, 4.42, 4.18, 4.42, 4.3], color="black")
+        axis.text(center, 4.75, f"g_{name.replace('→','')}={conductance:g} nS"
+                  + (" (abierto)" if conductance == 0 else ""), ha="center", fontsize=11)
+        current = (1. if conductance > 0 else 0.) if result is None else float(components[key])
+        label = f"I {name} (sentido +)" if result is None else f"I {name}={_circuit_current(current)} pA"
+        axis.text(center, 3.25, label, ha="center", fontsize=11,
+                  gid=f"axial-label-{name.replace('→','')}")
         if abs(current) > 1e-10:
             start, end = ((center-.6, center+.6) if current > 0 else (center+.6, center-.6))
-            axis.annotate("", (end, 3.2), (start, 3.2), arrowprops={"arrowstyle": "->", "color": "tab:red", "lw": 2})
-    photo = 1. if result is None else float(components["photocurrent_pa"][0])
-    axis.plot([-.2, positions[0]-.18], [3.6, 3.6], color="black")
-    label = "I_photo: entrante +\nvariación por luz <0" if result is None else f"I_photo={photo:+.3f} pA"
-    axis.text(-.4, 4.15, label, ha="left", fontsize=10)
-    if abs(photo) > 1e-10:
-        start, end = ((-.3, .5) if photo > 0 else (.5, -.3))
-        axis.annotate("", (end, 3.6), (start, 3.6), arrowprops={"arrowstyle": "->", "color": "tab:purple", "lw": 2})
-    purpose = "F1 · Identificar almacenamiento, fuga y conexiones en una sola célula | Esquema no a escala"
+            axis.annotate("", (end, 3.85), (start, 3.85),
+                          arrowprops={"arrowstyle": "->", "color": "tab:red", "lw": 2},
+                          gid=f"axial-arrow-{name.replace('→','')}")
+    purpose = ("F1 · Almacenamiento, fuga y conexiones en una sola célula | Circuito equivalente, no a escala\n"
+               "Flechas rojas: orientación axial positiva de referencia; no son corrientes medidas")
     if result is not None:
-        purpose = f"F5 · Leer sentidos de corriente y voltajes | Muestra t={result.time_ms[index]:g} ms\nEsquema no a escala; flechas rojas = sentido de corriente, sin flecha si cero"
+        purpose = (f"F5 · Corrientes y voltajes simulados | Muestra t={result.time_ms[index]:g} ms\n"
+                   "Circuito equivalente, no a escala · flechas rojas: sentido axial efectivo; sin flecha si |I| ≤ 10⁻¹⁰ pA")
     _finish(fig, purpose, parameters)
+    fig.texts[-1].set_text("C, gL, E y acoplamientos rotulados: constantes durante esta simulación.\n"
+                           "Parámetros ilustrativos, no calibrados; esquema y curvas no son mediciones.")
     return fig, axis
 
 
