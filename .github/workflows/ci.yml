@@ -1,0 +1,32 @@
+name: Modelo y notebook
+
+on:
+  push:
+    branches: [main, feat/rod-three-compartments-minimal]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -e '.[dev,widgets]'
+      - run: python -m ipykernel install --user --name neurofisiologia
+      - run: python -m pytest -q
+      - run: python scripts/execute_notebook.py --kernel neurofisiologia
+      - run: python scripts/verify_notebook_controls.py --kernel neurofisiologia
+      - run: python -m neurofisiologia.examples
+      - name: Comprobar frontera de bibliografía
+        run: |
+          git check-ignore -q Bibliografia/archivo-de-comprobacion.pdf
+          test -z "$(git ls-files -- Bibliografia/)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: notebook-y-figuras
+          path: outputs/
