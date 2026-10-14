@@ -11,6 +11,9 @@ Datos numéricos y especie de cada referencia: [procedencia](referencias_y_param
 | Outer segment, OS | Segmento externo, O | Región con discos y pigmento; recibe la variación fotosensible impuesta. |
 | Inner segment, IS | Segmento interno, I | Región de soporte; este nodo agrupa también cuerpo y conexión, no toda la anatomía. |
 | Synaptic terminal | Terminal sináptica, T | Región de comunicación real; aquí solo hay potencial eléctrico, sin liberación calculada. |
+| Synapse | Sinapsis | Sitio especializado de comunicación entre células. Las conexiones axiales O-I/I-T no son sinapsis. |
+| Neurotransmitter | Neurotransmisor | Molécula mensajera liberada por una célula que actúa sobre receptores de otra; no es una corriente axial. |
+| Glutamate | Glutamato | Neurotransmisor utilizado por fotorreceptores para comunicación con otras células retinales; no una variable de nuestras EDO. |
 | Phototransduction | Fototransducción | Conversión del evento óptico en cambio eléctrico; aquí se sustituye por una entrada impuesta. |
 | Rhodopsin | Rodopsina | Pigmento del bastón; no es una variable del sistema O-I-T. |
 | Transducin | Transducina | Proteína de señalización del mecanismo real; no se integra. |

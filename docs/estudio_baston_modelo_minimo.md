@@ -16,6 +16,14 @@ fronteras anatómicas. Son regiones de una misma célula, no tres neuronas.
 El [esquema anatómico de Webvision, fig. 5](https://www.ncbi.nlm.nih.gov/books/NBK11522/)
 ayuda a localizar las regiones; no aporta nuestras capacitancias ni conductancias.
 
+Una **sinapsis** es un sitio de comunicación entre células. En una sinapsis
+química, un **neurotransmisor** es una molécula mensajera que actúa sobre
+receptores de otra célula. La terminal real del fotorreceptor libera glutamato
+para esa comunicación. Estudiar V_T aborda una señal eléctrica previa a esa
+salida química; V_T por sí solo no cuantifica la liberación. Las otras células
+y esos procesos no están en las EDO. Contexto:
+[Phototransduction, Neuroscience](https://www.ncbi.nlm.nih.gov/books/NBK10806/).
+
 En oscuridad existe entrada de cationes. Luz activa rodopsina, transducina y PDE;
 disminuye cGMP y se cierran canales CNG. Menos corriente entrante favorece
 hiperpolarización. Esa cadena motiva la entrada, pero no se integra en el modelo.
