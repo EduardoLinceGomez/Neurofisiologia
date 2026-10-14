@@ -4,19 +4,25 @@ Los eventos representan respuestas elementales ya generadas, no el flujo de
 fotones incidentes ni spikes neuronales. No se modela eficiencia cuántica.
 """
 
+from __future__ import annotations
+
 from dataclasses import dataclass
+from collections.abc import Iterable
 
 import numpy as np
+from numpy.typing import ArrayLike, NDArray
 
 # Referencia de sapo, célula 1 (Baylor, Lamb y Yau 1979); no ajuste de voltaje.
 BAYLOR_CELL1_AMPLITUDE_PA = 1.2
 BAYLOR_CELL1_T_PEAK_MS = 2200.0
 
 
-def photon_kernel(u_ms, t_peak_ms: float = BAYLOR_CELL1_T_PEAK_MS):
+def photon_kernel(u_ms: ArrayLike, t_peak_ms: float = BAYLOR_CELL1_T_PEAK_MS) -> float | NDArray[np.float64]:
     """h(u) causal y de máximo 1; aproximación fenomenológica de cuatro etapas.
 
     h(u) = (u/t_peak)^3 exp(3(1-u/t_peak)), u >= 0.
+    u y t_peak están en ms. Devuelve h adimensional, escalar o array de la
+    misma forma que u. No representa cuatro reacciones moleculares.
     Se evalúa en dominio logarítmico para evitar overflow en tiempos grandes.
     """
     if not np.isfinite(t_peak_ms) or t_peak_ms <= 0:
@@ -47,7 +53,7 @@ class PhotonEvents:
     amplitudes_pa: tuple[float, ...] = ()
     t_peak_ms: float = BAYLOR_CELL1_T_PEAK_MS
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         times = np.asarray(self.times_ms, dtype=float)
         amps = np.asarray(self.amplitudes_pa, dtype=float)
         if times.ndim != 1 or amps.shape != times.shape:
@@ -64,15 +70,25 @@ class PhotonEvents:
         object.__setattr__(self, "t_peak_ms", float(self.t_peak_ms))
 
     @classmethod
-    def from_times(cls, times_ms, amplitude_pa=BAYLOR_CELL1_AMPLITUDE_PA,
-                   t_peak_ms=BAYLOR_CELL1_T_PEAK_MS):
+    def from_times(cls: type[PhotonEvents], times_ms: Iterable[float],
+                   amplitude_pa: float = BAYLOR_CELL1_AMPLITUDE_PA,
+                   t_peak_ms: float = BAYLOR_CELL1_T_PEAK_MS) -> PhotonEvents:
+        """Asigna A≥0 (pA) a tiempos ordenados en ms, sin modificar su orden.
+
+        h tiene máximo unitario en t_peak_ms; por tanto cada variación entrante
+        vale -A*h. Coincidencias se suman, sin saturación ni adaptación.
+        """
         times = tuple(times_ms)
         if not np.isfinite(amplitude_pa) or amplitude_pa < 0:
             raise ValueError("amplitude_pa debe ser finita y no negativa")
         return cls(times, (amplitude_pa,) * len(times), t_peak_ms)
 
-    def current(self, t_ms):
-        """I_photo(t) en pA: -sum_k A_k h(t-t_k), sin saturación."""
+    def current(self, t_ms: ArrayLike) -> float | NDArray[np.float64]:
+        """I_photo(t) en pA: -sum_k A_k h(t-t_k), sin saturación.
+
+        t_ms finito, escalar o array; devuelve la misma forma. A≥0 produce
+        variación entrante no positiva; no es la corriente oscura absoluta.
+        """
         t = np.asarray(t_ms, dtype=float)
         if not np.all(np.isfinite(t)):
             raise ValueError("t_ms debe ser finito")

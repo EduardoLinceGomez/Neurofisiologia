@@ -2,7 +2,7 @@ name: Modelo y notebook
 
 on:
   push:
-    branches: [main, feat/rod-three-compartments-minimal]
+    branches: [main, feat/rod-three-compartments-minimal, feat/rod-guided-study]
   pull_request:
 
 jobs:

@@ -12,6 +12,11 @@ from .stimulus import PhotonEvents, poisson_events
 
 
 def example_stimuli() -> dict[str, PhotonEvents]:
+    """Cuatro trenes efectivos en ms, A=1.2 pA, t_peak=2200 ms.
+
+    Son entradas reproducibles, no registros ni spikes. Poisson utiliza
+    0.3 eventos/s, ventana de 10 s y semilla 2026.
+    """
     return {
         "oscuridad": PhotonEvents(),
         "foton_individual": PhotonEvents.from_times([1000.0]),
@@ -20,7 +25,8 @@ def example_stimuli() -> dict[str, PhotonEvents]:
     }
 
 
-def main():
+def main() -> None:
+    """Genera cuatro figuras PNG locales, con unidades y rótulos de simulación."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=Path("outputs"))
     args = parser.parse_args()

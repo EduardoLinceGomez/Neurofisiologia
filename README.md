@@ -12,6 +12,32 @@ fotosensible de potenciales simulados con parámetros ilustrativos.
 La ruta de estudio prevista es bastón → cono → amacrina. Esta primera etapa se
 limita al bastón; las extensiones requieren trabajo posterior.
 
+## Ruta de estudio
+
+El [Issue #3](https://github.com/EduardoLinceGomez/Neurofisiologia/issues/3)
+convierte este modelo en un laboratorio para una persona con formación matemática
+que comienza a estudiar neurofisiología. Sigue este orden:
+
+1. [Notebook 01: primera ejecución](notebooks/01_baston_tres_compartimentos.ipynb)
+   para reconocer entradas, unidades y respuestas. Su comparación conserva una
+   referencia fija independiente de amplitud y tasa.
+2. [Notebook 02: estudio guiado](notebooks/02_estudio_guiado_baston.ipynb), 16 etapas
+   desde fisiología y signos hasta uno/dos/tres nodos, corrientes, sensibilidad y
+   modos. Predice antes de ejecutar y contrasta con respuestas plegadas.
+3. [Notas conceptuales y deducciones](docs/estudio_baston_modelo_minimo.md),
+   [glosario bilingüe](docs/glosario_neurofisio.md) y
+   [preguntas con soluciones](docs/preguntas_de_estudio_baston.md), para estudio
+   independiente y autoevaluación.
+4. [Fuentes y procedencia](docs/referencias_y_parametros.md) y
+   [evidencia de validación](docs/validacion.md), para cuestionar qué se mide,
+   qué se supone, qué se deduce y qué se aproxima numéricamente.
+
+Cada experimento declara qué cambia y qué conserva. F1–F8 estudian circuito,
+kernel/eventos, V/ΔV, corrientes, estado temporal, conectividad, sensibilidad y
+variabilidad Poisson. SVG y PNG se exportan a `outputs/estudio_baston/`.
+Los controles manuales tienen una alternativa por funciones Python; no hace
+falta aprender primero el código del integrador para leer los materiales.
+
 ## Qué se calcula
 
 Se resuelven tres balances continuos de corriente con acoplamientos axiales
@@ -59,20 +85,23 @@ python -m pytest -q
 python scripts/execute_notebook.py --kernel neurofisiologia
 python scripts/verify_notebook_controls.py --kernel neurofisiologia
 MPLBACKEND=Agg python -m neurofisiologia.examples
-jupyter lab notebooks/01_baston_tres_compartimentos.ipynb
+jupyter lab notebooks/02_estudio_guiado_baston.ipynb
 ```
 
 `widgets` es opcional; `.[dev]` basta para ejecutar pruebas y notebook.
 Sin widgets, las comparaciones se hacen llamando la función de la celda.
 En VS Code, abrir el notebook y seleccionar el kernel **Neurofisiología (.venv)**.
 La celda de parámetros permite cambiar las tres C, fugas, reversión y ambos
-acoplamientos; los controles opcionales comparan amplitud, acoplamiento y tasa
-de eventos efectivos, con semilla fija.
+acoplamientos. El laboratorio 02 agrupa controles de entrada, membrana y tiempo,
+con parámetros avanzados y reinicio. La comparación mantiene una referencia
+canónica fija; tasa/semilla diferentes generan otras entradas y variabilidad
+residual, visible mediante ambos trenes y un conjunto de realizaciones.
 
-El notebook fuente permanece sin salidas. Su versión ejecutada y las cuatro
-figuras de verificación se guardan en `outputs/`, ignorado por Git. El script
-ejecuta desde la raíz aunque se invoque desde otro directorio. GitHub Actions
-repite las pruebas, ejecuta el notebook y genera figuras en Linux.
+Los notebooks fuente permanecen sin salidas. Sus versiones ejecutadas y figuras
+se guardan en `outputs/`, ignorado. `execute_notebook.py` ejecuta ambos por
+defecto; `--notebook 01` o `--notebook 02` selecciona uno. Los scripts ejecutan
+desde la raíz aunque se invoquen desde otro directorio. GitHub Actions repite
+pruebas, ambos notebooks y callbacks con/sin widgets en Linux.
 
 ## Uso del modelo desde Python
 
@@ -94,6 +123,13 @@ Iniciar la integración antes del primer evento o proporcionar un estado inicial
 calculado previamente: la función no reconstruye la historia anterior al inicio.
 La malla de salida y el paso adaptativo son diferentes; el paso interno está
 limitado por `t_peak/30` y puede reducirse con `max_step_ms`.
+
+Para inspeccionar corrientes, `decompose_currents(t, V, p, events)` devuelve
+fuga, foto, O-I, I-T, axial y neta, en pA. Los signos se documentan antes de
+dividir por C. `analysis.py` contiene métricas y experimentos: no redefine EDO.
+Una respuesta nula no tiene un retraso inventado; su instante es NaN y su
+retardo None. `variation_of_constants` evalúa una identidad analítica mediante
+exponencial matricial y cuadratura numéricas, como contraste del solver.
 
 ## Revisar seguridad y cambios
 
