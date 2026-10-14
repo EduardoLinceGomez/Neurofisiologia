@@ -1,0 +1,14 @@
+# Bibliografía privada: conservar localmente; nunca versionar su contenido.
+/Bibliografia/
+
+# Entornos, cachés y resultados locales.
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+.DS_Store
+outputs/
