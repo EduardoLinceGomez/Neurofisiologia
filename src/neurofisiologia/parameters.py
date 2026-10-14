@@ -19,7 +19,7 @@ class RodParameters:
     g_oi_ns: float = 0.10
     g_it_ns: float = 0.10
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         for name in ("capacitance_pf", "leak_ns", "reversal_mv"):
             values = np.asarray(getattr(self, name), dtype=float)
             if values.shape != (3,) or not np.all(np.isfinite(values)):

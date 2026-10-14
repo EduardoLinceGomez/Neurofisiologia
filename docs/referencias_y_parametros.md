@@ -56,11 +56,15 @@ the Geometry of Membrane Potential*. Preprint bioRxiv, versión 1 publicada el
 [DOI](https://doi.org/10.64898/2026.08.21.746364).
 [PDF público v1](https://www.biorxiv.org/content/10.64898/2026.08.21.746364v1.full.pdf).
 
-La sección 3.8, p. 18, **ecuación 38** presenta el balance con vecinos. En esa
-versión la ecuación 36 (sección 3.7, p. 17) describe la curvatura temporal, aunque
-el Issue menciona 36 como localizador multicompartmental. Se deja explícita esta
-diferencia de numeración: las ecuaciones implementadas son exactamente las tres
-del Issue. Al normalizar cada balance por C_j, `g_jk/C_j` puede ser distinto de
+La sección 3.8, p. 18, **ecuación 38** presenta el balance con vecinos en la
+**versión pública de agosto** consultada. En ella la ecuación 36 (sección 3.7,
+p. 17) describe curvatura. La [decisión aprobada](decisiones/0001-laboratorio-estudio-baston.md)
+y la revisión del PR #2 reportan una **versión de estudio fechada 1 de septiembre
+de 2026**, sección 3.6, **ecuación 36**, para el balance multicompartmental.
+Este segundo localizador procede de la documentación aportada; no se revalidó
+abriendo un PDF privado y no se inventa una página para esa versión.
+Son ediciones diferentes; no se intercambian sus números de ecuación. Las EDO
+implementadas siguen siendo las tres del Issue. Al normalizar cada balance por C_j, `g_jk/C_j` puede ser distinto de
 `g_jk/C_k`; la **conductancia y la corriente axial**, antes de dividir por C,
 son simétricas e iguales y opuestas.
 
@@ -86,3 +90,16 @@ Por eso no se infiere una predicción cuantitativa de voltaje real ni actividad
 sináptica. La superposición lineal pierde validez bajo iluminación intensa al
 omitir saturación, adaptación y retroalimentación. Estas extensiones, así como
 conos y amacrinas, quedan para etapas posteriores.
+## Fuentes del contexto fisiológico (sin calibración nueva)
+
+| Fuente pública | Especie / localizador | Concepto o variable | Uso en el laboratorio |
+| --- | --- | --- | --- |
+| [Hagins, Penn y Yoshikami (1970), Dark current and photocurrent in retinal rods](https://pubmed.ncbi.nlm.nih.gov/5439318/) | Rata; Biophys. J. 10:380-412; resumen público | Corriente oscura y reducción por luz | Motivación del signo; ninguna cifra eléctrica importada |
+| [Yau y Nakatani (1985), Light-suppressible, cyclic GMP-sensitive conductance](https://pubmed.ncbi.nlm.nih.gov/2995816/) | Sapo Bufo marinus (MeSH); Nature 317:252-255; resumen | Conductancia de membrana sensible a luz/cGMP | Contexto experimental del cierre fotosensible; sin g calibrada |
+| [Purves et al., Neuroscience, Phototransduction](https://www.ncbi.nlm.nih.gov/books/NBK10806/) | Contexto de vertebrados; fig. 11.6 y 11.7 | Pigmento, transducina, PDE, cGMP y canales | Secuencia cualitativa; no dato cuantitativo de este modelo |
+| [Webvision, Photoreceptors](https://www.ncbi.nlm.nih.gov/books/NBK11522/) | Anatomía comparada, énfasis en primates; Light microscopy, fig. 5 | Segmentos y terminal | Anatomía; sin convertir dimensiones de otras especies en C/g |
+
+La corriente contextual tiene unidades de A/pA y la conductancia S/nS, pero
+no se importan valores de esas fuentes. El mecanismo real se explica como
+antecedente de la entrada impuesta, no se añade al sistema. El mapa de regiones
+es vectorial original, conceptual y no a escala; no copia figuras de artículos.

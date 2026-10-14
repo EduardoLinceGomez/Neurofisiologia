@@ -21,5 +21,10 @@
   y referencia experimental. Guardar productos generados en `outputs/` (ignorado).
 - Validar con pytest y ejecutar el notebook completo antes de publicar cambios.
   Mantener el notebook fuente sin salidas ni rutas personales.
+- Para el laboratorio del Issue #3, seguir la decisión 0001 y el plan 02,
+  ejecutar ambos notebooks y comprobar callbacks con/sin widgets. La referencia
+  canónica es independiente de los controles; al cambiar tasa se muestran las
+  dos entradas y su variabilidad. `decompose_currents` orienta J_OI positiva
+  O→I y J_IT positiva I→T; por nodo se suman corrientes entrantes antes de /C.
 - Publicar únicamente ramas autorizadas y PR en borrador. No fusionar ni activar
   auto-merge sin una instrucción posterior expresa del usuario.
