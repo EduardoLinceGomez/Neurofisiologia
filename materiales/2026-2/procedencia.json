@@ -1,0 +1,245 @@
+{
+  "fecha": "2026-11-06",
+  "origen": "Posgrado/2026-2/Neurofisiologia",
+  "base_main": "001eae1ad282cb183d520de0f2a9c10811fbd8f3",
+  "archivos": [
+    {
+      "origen": "hodgkin_huxley_laboratorio_interactivo.ipynb",
+      "destino": "hodgkin_huxley_laboratorio_interactivo.ipynb",
+      "sha256_origen": "62c8849476b48c4818aa77d4ef32d2a3ca570d86ac2fb7fdc1b395ca56d45e55",
+      "sha256_destino": "40c379adb6dd465d2fab901302aaa054d54d1f70b076b8339ebcbd4be46fd148",
+      "transformacion": "salidas y contadores eliminados; código y texto conservados"
+    },
+    {
+      "origen": "requirements_hh_notebook.txt",
+      "destino": "requirements_hh_notebook.txt",
+      "sha256_origen": "c474b25b953de0c4a804884bbfadbc2996a5b36bacd9ea1376608002d83f53e2",
+      "sha256_destino": "c474b25b953de0c4a804884bbfadbc2996a5b36bacd9ea1376608002d83f53e2",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "generarHTML_HH.py",
+      "destino": "generarHTML_HH.py",
+      "sha256_origen": "63bfbebd1ca173d0b95de5d2878e4e737ca746ada4d501fdbaf48c9e60bbc7d5",
+      "sha256_destino": "63bfbebd1ca173d0b95de5d2878e4e737ca746ada4d501fdbaf48c9e60bbc7d5",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "tarea2/tarea2.ipynb",
+      "destino": "tarea2/tarea2.ipynb",
+      "sha256_origen": "12b1e90c4e0f27f3cace3d60ad76a6d57722a39b7342814a86c811287d1e5507",
+      "sha256_destino": "12b1e90c4e0f27f3cace3d60ad76a6d57722a39b7342814a86c811287d1e5507",
+      "transformacion": "salidas y contadores eliminados; código y texto conservados"
+    },
+    {
+      "origen": "Proyecto/proyecto1.ipynb",
+      "destino": "Proyecto/proyecto1.ipynb",
+      "sha256_origen": "1303535943733bb42a5be6c24041cd1f4fd4f17f80b56a7c32a300f479335881",
+      "sha256_destino": "251f4698a68db0f0d56bbda51dcb7b8d7e4f332889cc466d77ad3b50d4297a7f",
+      "transformacion": "salidas y contadores eliminados; código y texto conservados"
+    },
+    {
+      "origen": "Proyecto/Jac4.jpg",
+      "destino": "Proyecto/Jac4.jpg",
+      "sha256_origen": "1f27985b24b8541452d93a5452df2b2acd7553d040e8baa59382743431765690",
+      "sha256_destino": "1f27985b24b8541452d93a5452df2b2acd7553d040e8baa59382743431765690",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "Proyecto/Jac5.jpg",
+      "destino": "Proyecto/Jac5.jpg",
+      "sha256_origen": "963799fef3bec434221457f73cd21ed834a3f26f5fbdcb300af6689067f3b9e2",
+      "sha256_destino": "963799fef3bec434221457f73cd21ed834a3f26f5fbdcb300af6689067f3b9e2",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "Proyecto/Jac6.jpg",
+      "destino": "Proyecto/Jac6.jpg",
+      "sha256_origen": "9c67b3e476b3f5948323960ef43fb2f0972f4f9ce61b2de2324098eba782f0e6",
+      "sha256_destino": "9c67b3e476b3f5948323960ef43fb2f0972f4f9ce61b2de2324098eba782f0e6",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "Proyecto/Jac2.jpg",
+      "destino": "Proyecto/Jac2.jpg",
+      "sha256_origen": "84f1c02b25ca800d0c214e348527484708961f2a95f1e1cefff218d71a71ca47",
+      "sha256_destino": "84f1c02b25ca800d0c214e348527484708961f2a95f1e1cefff218d71a71ca47",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "Proyecto/Jac3.jpg",
+      "destino": "Proyecto/Jac3.jpg",
+      "sha256_origen": "ac5971d1b7dbf143566cde068190eaf3ae3f010bce44e47d97d873c7a8b1fef0",
+      "sha256_destino": "ac5971d1b7dbf143566cde068190eaf3ae3f010bce44e47d97d873c7a8b1fef0",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "Proyecto/Jac1.jpg",
+      "destino": "Proyecto/Jac1.jpg",
+      "sha256_origen": "7f23845759db576f9c48d34b6cf89e48424771dfc5e382d1d0a6ca856e5dbdb2",
+      "sha256_destino": "7f23845759db576f9c48d34b6cf89e48424771dfc5e382d1d0a6ca856e5dbdb2",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "Proyecto/ej4-1.jpg",
+      "destino": "Proyecto/ej4-1.jpg",
+      "sha256_origen": "8d9b16e28b25390a4403892612131efc62625c3aeb2e7d77d707a5a8e75adeea",
+      "sha256_destino": "8d9b16e28b25390a4403892612131efc62625c3aeb2e7d77d707a5a8e75adeea",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "Proyecto/ej4-3.jpg",
+      "destino": "Proyecto/ej4-3.jpg",
+      "sha256_origen": "f76c6d4dc4653f33ea418caf1fd76c481bc1817bbb86412fc59047bf9e062c20",
+      "sha256_destino": "f76c6d4dc4653f33ea418caf1fd76c481bc1817bbb86412fc59047bf9e062c20",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "Proyecto/ej4-2.jpg",
+      "destino": "Proyecto/ej4-2.jpg",
+      "sha256_origen": "c9b3acbdbad67625a8b0f76e09c604ba667b1cf78f46ecec9c0a67b0187793d2",
+      "sha256_destino": "c9b3acbdbad67625a8b0f76e09c604ba667b1cf78f46ecec9c0a67b0187793d2",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "Proyecto/ej4-4.jpg",
+      "destino": "Proyecto/ej4-4.jpg",
+      "sha256_origen": "66d8c8642eb74adb61561a35270cfaa18271055d0a282ed66ac68185ed2fc508",
+      "sha256_destino": "66d8c8642eb74adb61561a35270cfaa18271055d0a282ed66ac68185ed2fc508",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/requirements.txt",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/requirements.txt",
+      "sha256_origen": "de775e37ac2ba7684234ffc9092deb9c726c86e3a6b31e9780c1bad15b664068",
+      "sha256_destino": "de775e37ac2ba7684234ffc9092deb9c726c86e3a6b31e9780c1bad15b664068",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/pyproject.toml",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/pyproject.toml",
+      "sha256_origen": "4f7403b77a81f8005888c357d2df00fd1b04848fd3b36f9b45ad8e033fc80c94",
+      "sha256_destino": "4f7403b77a81f8005888c357d2df00fd1b04848fd3b36f9b45ad8e033fc80c94",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/README.md",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/README.md",
+      "sha256_origen": "b7f50e12192f4b38215a983ac190f59aa6725cc0be4e140e50c6d9f8240b7afb",
+      "sha256_destino": "b7f50e12192f4b38215a983ac190f59aa6725cc0be4e140e50c6d9f8240b7afb",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/.gitignore",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/.gitignore",
+      "sha256_origen": "4f65ce5c98af5edbbfabc7717bcbc6c609755c3734fb58b1ead2c752ec2ec801",
+      "sha256_destino": "4f65ce5c98af5edbbfabc7717bcbc6c609755c3734fb58b1ead2c752ec2ec801",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/tests/test_minimo.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/tests/test_minimo.py",
+      "sha256_origen": "c1aa7b8395e290fa2eed0e572fca43e10e3508462899aeae208108762c54408e",
+      "sha256_destino": "c1aa7b8395e290fa2eed0e572fca43e10e3508462899aeae208108762c54408e",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/scripts/construir_cache_umbral.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/scripts/construir_cache_umbral.py",
+      "sha256_origen": "7138fd20b364be9666429b2a12b3647c095cb33ed2e6ce5b97f68c066bf312f1",
+      "sha256_destino": "7138fd20b364be9666429b2a12b3647c095cb33ed2e6ce5b97f68c066bf312f1",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/notebooks/01_demo_sistema_ud.ipynb",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/notebooks/01_demo_sistema_ud.ipynb",
+      "sha256_origen": "7ff1c0ad08757c3239c2b9d2dede72a0b13bebd8bdda8e0d59857cfdcc459eec",
+      "sha256_destino": "440a81b42d34a8ae1332d9e00529fa8a0db1affeb5b53a4df303a6452c6e733c",
+      "transformacion": "salidas y contadores eliminados; código y texto conservados"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/estimulo.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/estimulo.py",
+      "sha256_origen": "21ec9ff9957706133f8c53a9919833fcf61696b465b838d0949750cebb1fc854",
+      "sha256_destino": "21ec9ff9957706133f8c53a9919833fcf61696b465b838d0949750cebb1fc854",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/__init__.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/__init__.py",
+      "sha256_origen": "471a9abeb40a2b8cf043db2ae8f3554ae58ebd87936ca835adc1cc53919e7f9c",
+      "sha256_destino": "471a9abeb40a2b8cf043db2ae8f3554ae58ebd87936ca835adc1cc53919e7f9c",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/visualizacion.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/visualizacion.py",
+      "sha256_origen": "0e8cee90b77b0e7d60c0e88ec2c68badb8195b2fe776cab11c0bb32348a8dfca",
+      "sha256_destino": "0e8cee90b77b0e7d60c0e88ec2c68badb8195b2fe776cab11c0bb32348a8dfca",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/analisis.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/analisis.py",
+      "sha256_origen": "e06c070f72992559766278647d7d10408e3da7c41ea3c213d7d5a93cde8253d5",
+      "sha256_destino": "e06c070f72992559766278647d7d10408e3da7c41ea3c213d7d5a93cde8253d5",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/configuracion.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/configuracion.py",
+      "sha256_origen": "1255e0d1f1c1183ca62547d24c49e9aa4ca7192daae1c61435302c7a36f4e456",
+      "sha256_destino": "1255e0d1f1c1183ca62547d24c49e9aa4ca7192daae1c61435302c7a36f4e456",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/cache/almacenamiento_npz.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/cache/almacenamiento_npz.py",
+      "sha256_origen": "e9ae6b1425692766f28f42409631e1472d7e57f4b30c6f19d3ffe00a252ff4b9",
+      "sha256_destino": "e9ae6b1425692766f28f42409631e1472d7e57f4b30c6f19d3ffe00a252ff4b9",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/cache/__init__.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/cache/__init__.py",
+      "sha256_origen": "2a40db74b237193992d23554d4e2f50eff532e12da05c08077e505c37f0087f1",
+      "sha256_destino": "2a40db74b237193992d23554d4e2f50eff532e12da05c08077e505c37f0087f1",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/cache/constructor_umbral.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/cache/constructor_umbral.py",
+      "sha256_origen": "c6a16964086ea664d0f8eaf16fdd92df9d33225e87717ad50c2708ba5b66603a",
+      "sha256_destino": "c6a16964086ea664d0f8eaf16fdd92df9d33225e87717ad50c2708ba5b66603a",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/modelos/__init__.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/modelos/__init__.py",
+      "sha256_origen": "6c71fe9383f1c5d04e77dddc2fecdfda752b0c96925204ec7be0c825ab4cd09e",
+      "sha256_destino": "6c71fe9383f1c5d04e77dddc2fecdfda752b0c96925204ec7be0c825ab4cd09e",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/modelos/sistema_ud.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/modelos/sistema_ud.py",
+      "sha256_origen": "c6638ea99bfca8b785da6dfc04deb73d7ce1b633261a13233d797498f3f2e93e",
+      "sha256_destino": "c6638ea99bfca8b785da6dfc04deb73d7ce1b633261a13233d797498f3f2e93e",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/integradores/__init__.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/integradores/__init__.py",
+      "sha256_origen": "d3e31b81760bcb73059c78b6b6feed17be22d05babbbdf1b1c92a2c57fe37b90",
+      "sha256_destino": "d3e31b81760bcb73059c78b6b6feed17be22d05babbbdf1b1c92a2c57fe37b90",
+      "transformacion": "copia byte a byte"
+    },
+    {
+      "origen": "PA/proyecto_neurofisiologia_ud_minimo/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/integradores/integrador_ud_exponencial_rk2.py",
+      "destino": "PA/proyecto_neurofisiologia_ud_minimo/src/neurofisiologia_ud/integradores/integrador_ud_exponencial_rk2.py",
+      "sha256_origen": "d58a8718893dd1b703b4b28a1fc0a7aaa293c9a5d6d2f5b1eed18517d70c0c1d",
+      "sha256_destino": "d58a8718893dd1b703b4b28a1fc0a7aaa293c9a5d6d2f5b1eed18517d70c0c1d",
+      "transformacion": "copia byte a byte"
+    }
+  ]
+}

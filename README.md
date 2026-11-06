@@ -1,7 +1,8 @@
 # Neurofisiología
 
-Repositorio de investigación para estudiar modelos compartimentales de retina.
-La primera etapa desarrolla un bastón pasivo con segmento externo (O), segmento
+Espacio de estudio, consulta y desarrollo de modelos neurofisiológicos, con
+materiales históricos de 2026-2 y un laboratorio vigente de retina. La primera
+etapa desarrolla un bastón pasivo con segmento externo (O), segmento
 interno (I) y terminal sináptica eléctrica (T), según el
 [Issue #1](https://github.com/EduardoLinceGomez/Neurofisiologia/issues/1).
 
@@ -9,8 +10,35 @@ La bibliografía privada se conserva exclusivamente en `Bibliografia/`, excluida
 Git. Se documentarán referencias públicas y se distinguirán mediciones de corriente
 fotosensible de potenciales simulados con parámetros ilustrativos.
 
-La ruta de estudio prevista es bastón → cono → amacrina. Esta primera etapa se
-limita al bastón; las extensiones requieren trabajo posterior.
+El siguiente objetivo de investigación es **Cono → Bipolar ON / Bipolar OFF**,
+con respuestas graduadas. Es trabajo futuro: el modelo vigente sigue limitado
+al bastón pasivo. La consolidación no añade sinapsis, canales ni células a ese
+modelo. Los modelos activos del archivo histórico son antecedentes separados.
+
+## Materiales históricos de 2026-2
+
+El [índice del semestre](materiales/2026-2/README.md) conserva el contexto,
+las dependencias y los límites de cada trabajo. Consulta también la
+[auditoría y mapa conceptual](docs/consolidacion_2026-2.md), el
+[inventario](docs/inventario_2026-2.md), el
+[historial académico](docs/historial_academico.md) y la
+[validación de la consolidación](docs/validacion_consolidacion_2026-2.md).
+
+| Tema | Material | Uso recomendado |
+| --- | --- | --- |
+| Energía, transporte y Nernst | [Apuntes de tarea 2](materiales/2026-2/tarea2/tarea2.ipynb) | Lectura conceptual; no contiene código |
+| Umbral, refractariedad y conductancias | [Laboratorio HH](materiales/2026-2/hodgkin_huxley_laboratorio_interactivo.ipynb) | Contraste activo/pasivo; ejecución incompleta por una función ausente |
+| Explorador de umbral HH | [Generador HTML](materiales/2026-2/generarHTML_HH.py) | Generar en `outputs/`; requiere Plotly desde CDN |
+| Jacobiana, nulclinas y bifurcaciones | [Proyecto v–w y extensión histórica](materiales/2026-2/Proyecto/proyecto1.ipynb) | Diez hojas manuscritas; ejecución completa con advertencias numéricas pendientes |
+| Organización de simulaciones | [Paquete U–D](materiales/2026-2/PA/proyecto_neurofisiologia_ud_minimo/README.md) y [demo](materiales/2026-2/PA/proyecto_neurofisiologia_ud_minimo/notebooks/01_demo_sistema_ud.ipynb) | Experimentos independientes y caché; no es una red neuronal |
+
+Para comenzar: lee los apuntes de transporte, recorre los notebooks vigentes
+01→02 descritos abajo y después estudia Jacobiana/estabilidad en el proyecto
+histórico. Usa HH como contraste de excitabilidad y PA para examinar la separación
+entre modelo, estímulo y visualización. El
+[índice histórico](materiales/2026-2/README.md) explica cómo ejecutar copias sin
+alterar las fuentes. Antes de proponer ON/OFF, revisa las carencias documentadas
+de fisiología específica, sinapsis y teoría de cable.
 
 ## Ruta de estudio
 

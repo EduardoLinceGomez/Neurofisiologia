@@ -1,0 +1,7 @@
+# Complemento del entorno vigente; versiones ejecutadas el 2026-11-06.
+# No modifica las dependencias originales de los materiales ni es un lock total.
+ipympl==0.9.8
+sympy==1.14.0
+pandas==2.3.3
+mpmath==1.3.0
+pytz==2026.6
