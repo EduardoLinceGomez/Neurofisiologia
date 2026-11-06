@@ -1,7 +1,9 @@
 # Bibliografía privada: conservar localmente; nunca versionar su contenido.
 /Bibliografia/
 # La misma protección en subdirectorios y variantes habituales.
-[Bb]ibliograf[ií]a/
+[Bb]ibliografia/
+Bibliografía/
+bibliografía/
 [Bb]ibliography/
 
 # Entornos, cachés y resultados locales.

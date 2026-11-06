@@ -13,7 +13,7 @@ calibración de células retinianas.
 | --- | --- | --- |
 | 1 | [Tarea 2: energía electroquímica](tarea2/tarea2.ipynb), Nernst, transporte conjunto y ATP | Solo Markdown; lectura sin kernel. La versión de la referencia usada requiere revisión |
 | 2 | [Ruta actual 01→02](../../README.md#ruta-de-estudio): signos, unidades, balances, transmisión pasiva | Implementación canónica en `src/neurofisiologia/`, fuera de este archivo |
-| 3 | [Proyecto v–w](Proyecto/proyecto1.ipynb): Jacobiana, nulclinas, estabilidad y bifurcaciones | NumPy, SciPy, Matplotlib, SymPy, pandas; 104 celdas de código. Incluye diez hojas manuscritas junto al notebook. Las secciones finales de calcio/ráfagas son antecedentes, no objetivos ON/OFF |
+| 3 | [Proyecto v–w](Proyecto/proyecto1.ipynb): Jacobiana, nulclinas, estabilidad y bifurcaciones | NumPy, SciPy, Matplotlib, SymPy, pandas; 104 celdas ejecutadas, con overflow/valores inválidos en tres celdas de trayectorias. Incluye diez hojas manuscritas. Calcio/ráfagas son antecedentes, no objetivos ON/OFF |
 | 4 | [Laboratorio HH](hodgkin_huxley_laboratorio_interactivo.ipynb): umbral, refractariedad, papel de canales | [Dependencias originales](requirements_hh_notebook.txt). Requiere ipympl aunque su introducción lo sugiera opcional. **No ejecuta completo:** falta `quasi_ionic_current` en la sección 3 |
 | 5 | [Paquete U–D](PA/proyecto_neurofisiologia_ud_minimo/README.md) y [demo](PA/proyecto_neurofisiologia_ud_minimo/notebooks/01_demo_sistema_ud.ipynb) | Modelo/estímulos/integrador/caché/visualizador separados. La demo necesita construir antes el NPZ. Una prueba aprobada es evidencia limitada, no validación científica |
 | Opcional | [Generador HTML HH](generarHTML_HH.py) | Solo biblioteca estándar para generar; navegador con acceso a Plotly 2.35.2 CDN para graficar. Es otra implementación, no probada equivalente al notebook |
@@ -49,8 +49,11 @@ archivos enumerados por el manifiesto a `outputs/consolidacion_2026-2/trabajo/`.
 Allí genera el HTML y la caché, ejecuta los notebooks sin modificar sus celdas y
 guarda resultados/errores en `outputs/consolidacion_2026-2/`. No visita el semestre
 original ni la bibliografía. Si falla un notebook, guarda la ejecución parcial,
-continúa con los demás y termina con código distinto de cero. El fallo de HH es
-conocido; consulta el informe de validación para los demás resultados.
+continúa con los demás y termina con código distinto de cero. También señala
+overflow/valores inválidos/división por cero emitidos como `RuntimeWarning` y
+devuelve código distinto de cero cuando los encuentra. No detecta todos los
+posibles defectos numéricos. El fallo de HH y las advertencias del proyecto son
+conocidos; consulta el informe de validación para los detalles.
 
 Para ejecutar solo un material, añade `--notebook hh`, `--notebook proyecto`,
 `--notebook ud` o `--notebook apuntes`. Este último solo valida estructura: no hay

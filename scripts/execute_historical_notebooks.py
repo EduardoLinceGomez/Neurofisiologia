@@ -6,12 +6,26 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
 
 import nbformat
 from nbclient import NotebookClient
+
+
+def numerical_warning_cells(notebook) -> list[int]:
+    """Localiza advertencias numéricas emitidas, sin certificar todas las salidas."""
+    return [
+        i for i, cell in enumerate(notebook.cells)
+        if any(
+            output.get("output_type") == "stream"
+            and re.search(r"RuntimeWarning:.*(?:overflow|invalid value|divide by zero)",
+                          output.get("text", ""))
+            for output in cell.get("outputs", [])
+        )
+    ]
 
 
 def main() -> int:
@@ -76,6 +90,10 @@ def main() -> int:
                 if errors:
                     raise RuntimeError(f"{len(errors)} salidas de error en callbacks")
                 result["estado"] = "ejecutado sin errores"
+                warning_cells = numerical_warning_cells(notebook)
+                if warning_cells:
+                    result["celdas_advertencias_numericas"] = warning_cells
+                    result["estado"] = "ejecutado con advertencias numéricas; requiere revisión"
             else:
                 result["estado"] = "estructura válida; apuntes sin código"
         except Exception as error:
@@ -86,7 +104,8 @@ def main() -> int:
         print(f"{key}: {result['estado']}; {result['celdas_codigo']} celdas de código", flush=True)
     report = output / (f"resultado-{args.notebook}.json" if args.notebook else "resultado.json")
     report.write_text(json.dumps(results, ensure_ascii=False, indent=2) + "\n")
-    return int(any("error" in result for result in results.values()))
+    return int(any("error" in result or "celdas_advertencias_numericas" in result
+                   for result in results.values()))
 
 
 if __name__ == "__main__":

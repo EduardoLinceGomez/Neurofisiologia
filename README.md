@@ -29,7 +29,7 @@ las dependencias y los límites de cada trabajo. Consulta también la
 | Energía, transporte y Nernst | [Apuntes de tarea 2](materiales/2026-2/tarea2/tarea2.ipynb) | Lectura conceptual; no contiene código |
 | Umbral, refractariedad y conductancias | [Laboratorio HH](materiales/2026-2/hodgkin_huxley_laboratorio_interactivo.ipynb) | Contraste activo/pasivo; ejecución incompleta por una función ausente |
 | Explorador de umbral HH | [Generador HTML](materiales/2026-2/generarHTML_HH.py) | Generar en `outputs/`; requiere Plotly desde CDN |
-| Jacobiana, nulclinas y bifurcaciones | [Proyecto v–w y extensión histórica](materiales/2026-2/Proyecto/proyecto1.ipynb) | Estudio matemático con diez hojas manuscritas enlazadas |
+| Jacobiana, nulclinas y bifurcaciones | [Proyecto v–w y extensión histórica](materiales/2026-2/Proyecto/proyecto1.ipynb) | Diez hojas manuscritas; ejecución completa con advertencias numéricas pendientes |
 | Organización de simulaciones | [Paquete U–D](materiales/2026-2/PA/proyecto_neurofisiologia_ud_minimo/README.md) y [demo](materiales/2026-2/PA/proyecto_neurofisiologia_ud_minimo/notebooks/01_demo_sistema_ud.ipynb) | Experimentos independientes y caché; no es una red neuronal |
 
 Para comenzar: lee los apuntes de transporte, recorre los notebooks vigentes

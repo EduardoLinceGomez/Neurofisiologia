@@ -1,0 +1,2 @@
+# Conservar los finales CRLF del generador histórico sin normalizar sus bytes.
+materiales/2026-2/generarHTML_HH.py -text whitespace=cr-at-eol
