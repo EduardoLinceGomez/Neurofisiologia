@@ -1,8 +1,12 @@
 # Bibliografía privada: conservar localmente; nunca versionar su contenido.
 /Bibliografia/
+# La misma protección en subdirectorios y variantes habituales.
+[Bb]ibliograf[ií]a/
+[Bb]ibliography/
 
 # Entornos, cachés y resultados locales.
 .venv/
+.venv-*/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -12,3 +16,11 @@ build/
 dist/
 .DS_Store
 outputs/
+
+# Material heredado: fuentes seleccionadas, no adjuntos ni productos generados.
+/materiales/2026-2/**/*.pdf
+/materiales/2026-2/**/*.zip
+/materiales/2026-2/**/*.npz
+/materiales/2026-2/**/*.html
+.env
+.env.*
