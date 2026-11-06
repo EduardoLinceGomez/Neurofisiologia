@@ -9,10 +9,55 @@ La bibliografía privada se conserva exclusivamente en `Bibliografia/`, excluida
 Git. Se documentarán referencias públicas y se distinguirán mediciones de corriente
 fotosensible de potenciales simulados con parámetros ilustrativos.
 
-La ruta de estudio prevista es bastón → cono → amacrina. Esta primera etapa se
-limita al bastón; las extensiones requieren trabajo posterior.
+El laboratorio del bastón se conserva como referencia. El
+[Issue #7](https://github.com/EduardoLinceGomez/Neurofisiologia/issues/7) añade
+**M0: Cono → Bipolar ON / Bipolar OFF**, un experimento independiente con tres
+células distintas de un compartimento cada una y dos sinapsis químicas efectivas.
 
-## Ruta de estudio
+## M0: comprender la separación ON/OFF
+
+Abre el [notebook 03](notebooks/03_cono_bipolares_on_off.ipynb). Comienza por el
+fenómeno y construye cono → liberación → OFF → ON → equilibrio antes de los
+experimentos. Incluye esquemas fisiológico y eléctrico originales, comparación
+de incrementos/decrementos, cadena causal completa, corrientes, retorno al fondo,
+pulsos, desconexión selectiva y exploración de nueve parámetros.
+
+La luz cambia alrededor de un fondo positivo L0. La fotocorriente impuesta es
+`-k_L(L-L0)` y la liberación es una sigmoide creciente de V_C. Las conductancias
+son `g_ON=g_ON,max(1-r)` y `g_OFF=g_OFF,max*r`; ambas son catiónicas y no negativas.
+Los signos opuestos emergen de esas dependencias, sin invertir artificialmente
+los voltajes. Las bipolares parten del equilibrio real con sinapsis basal activa.
+
+Todos los parámetros M0 son **ilustrativos y no calibrados**; L y r son
+adimensionales. No se reutilizan parámetros de bastón como calibración de cono.
+Se estudian potenciales graduados: no hay spikes, GABA, células adicionales,
+cable ni una red espacial. El modelo está en `retina_on_off.py`; no cambia las
+EDO ni las funciones del bastón.
+
+- [Derivación, unidades y límites](docs/modelo_cono_on_off_minimo.md).
+- [Fuentes públicas y procedencia](docs/referencias_cono_on_off.md): Sterling y
+  Demb, figura 6.15 y p. 251; distinción de fisiología e hipótesis M0.
+- [Preguntas razonadas](docs/preguntas_cono_on_off.md).
+- [Pruebas y auditoría visual/pedagógica](docs/validacion_cono_on_off.md).
+
+Con el entorno descrito abajo:
+
+```bash
+source .venv/bin/activate
+python -m pytest -q
+python scripts/execute_m0_notebook.py --kernel neurofisiologia
+python scripts/verify_m0_controls.py --kernel neurofisiologia
+jupyter lab notebooks/03_cono_bipolares_on_off.ipynb
+```
+
+Los dos controles pequeños tienen alternativas `compare_light(0.5)` y
+`compare_parameter("C_ON", 2)` en el notebook. El primero muestra ambos signos
+del contraste; el segundo mantiene una referencia canónica fija. PNG/SVG y
+notebooks ejecutados quedan en `outputs/retina_on_off/`, ignorado. La CI ejecuta
+las pruebas anteriores y nuevas, los notebooks 01/02/03 y sus controles con/sin
+widgets. El PR histórico #6 es independiente y no es requisito para usar M0.
+
+## Ruta de estudio del bastón
 
 El [Issue #3](https://github.com/EduardoLinceGomez/Neurofisiologia/issues/3)
 convierte este modelo en un laboratorio para una persona con formación matemática
@@ -38,7 +83,7 @@ variabilidad Poisson. SVG y PNG se exportan a `outputs/estudio_baston/`.
 Los controles manuales tienen una alternativa por funciones Python; no hace
 falta aprender primero el código del integrador para leer los materiales.
 
-## Qué se calcula
+## Qué calcula el bastón
 
 Se resuelven tres balances continuos de corriente con acoplamientos axiales
 simétricos O-I y I-T mediante `scipy.integrate.solve_ivp`. La luz impone una

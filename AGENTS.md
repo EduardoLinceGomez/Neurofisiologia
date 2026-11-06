@@ -10,10 +10,23 @@
 - Usar fuentes públicas para documentar referencias. Distinguir datos experimentales
   de parámetros ilustrativos y no calibrados; registrar especie, figura/tabla,
   unidades y procedencia. No presentar trazas simuladas como mediciones.
-- Esta etapa contiene solo un bastón pasivo O-I-T con fotocorriente impuesta.
+- La etapa del bastón contiene solo un bastón pasivo O-I-T con fotocorriente impuesta.
   Mantener las ecuaciones del Issue #1 y el acoplamiento axial simétrico. No añadir
   conos, amacrinas, canales activos, bioquímica, liberación sináptica ni spikes.
-- Convención: corriente entrante positiva; la variación fotosensible es negativa.
+- El Issue #7 autoriza M0 como experimento **separado**: un cono y dos
+  bipolares ON/OFF, tres células con un compartimento cada una y sinapsis
+  químicas efectivas. Mantener exactamente tres EDO de voltaje, liberación
+  algebraica y conductancias catiónicas no negativas; la inversión ON reside
+  en g_ON(r), nunca en imponer el signo de V. No alterar los módulos ni los
+  notebooks del bastón. No añadir GABA, amacrinas, horizontales, ganglionares,
+  spikes, redes, canales activos ni nuevos compartimentos a M0.
+- Para M0, L0>0 y L>=0 son iluminación normalizada, r es liberación relativa,
+  y todas las constantes son ilustrativas sin especie/calibración asignada.
+  Iniciar en el equilibrio real con sinapsis basales activas. Verificar
+  incremento, decremento, recuperación, aislamiento y controles con/sin widgets.
+  No depender de materiales históricos pendientes de fusión ni modificarlos.
+- Convención: corriente entrante positiva. La variación fotosensible del bastón
+  es negativa; en M0 un incremento de luz da I_foto<0 y un decremento I_foto>0.
   Unidades internas: ms, mV, pF, nS, pA. Los eventos fotónicos no son spikes.
 - Separar parámetros, estímulos y EDO en `src/neurofisiologia/`. El notebook consume
   esa implementación; no duplicar el modelo en celdas.
