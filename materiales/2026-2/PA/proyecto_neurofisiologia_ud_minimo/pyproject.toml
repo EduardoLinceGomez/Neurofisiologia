@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neurofisiologia-ud"
+version = "0.1.0"
+description = "Implementación mínima del sistema UD-básico con caché NPZ, vectorización y esquema exponencial-RK2."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "ipywidgets>=8.1",
+    "ipympl>=0.9",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
