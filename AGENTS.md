@@ -3,10 +3,17 @@
 - Trabajar en este directorio existente y conservar los archivos locales. Inspeccionar
   estado, índice, remotos y diferencias antes de sincronizar; no usar reset, clean,
   force-push ni clonar encima del directorio.
-- `Bibliografia/` es privada y local. No editar, mover, renombrar, borrar, copiar,
-  versionar ni cargar sus documentos a servicios externos. No abrir su contenido
-  salvo necesidad estricta y autorización explícita. Mantener `/Bibliografia/`
-  en `.gitignore`; si hay archivos rastreados allí, detenerse y consultar.
+- `Bibliografia/` contiene documentación privada y local. No editar, mover,
+  renombrar, borrar, copiar, versionar ni cargar sus documentos a servicios
+  externos. No abrir su contenido privado salvo necesidad estricta y autorización
+  explícita. Mantener `/Bibliografia/` en `.gitignore`.
+  Por autorización expresa del propietario, se permite versionar **únicamente**
+  tres archivos de enlaces públicos, sin contenido bibliográfico de terceros:
+  `Bibliografia/Webvision.webloc`,
+  `Bibliografia/Fundamentos_de_la_Neurociencia.webloc` y
+  `Bibliografia/enlaces_publicos.md`. El índice explica la naturaleza de esos
+  enlaces. Si hay cualquier otra ruta rastreada bajo `Bibliografia/`, detenerse
+  y consultar. La excepción no autoriza explorar ni añadir material privado.
 - Usar fuentes públicas para documentar referencias. Distinguir datos experimentales
   de parámetros ilustrativos y no calibrados; registrar especie, figura/tabla,
   unidades y procedencia. No presentar trazas simuladas como mediciones.
