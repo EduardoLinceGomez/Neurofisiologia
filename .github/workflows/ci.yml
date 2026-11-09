@@ -26,7 +26,12 @@ jobs:
       - name: Comprobar frontera de bibliografía
         run: |
           git check-ignore -q Bibliografia/archivo-de-comprobacion.pdf
-          test -z "$(git ls-files -- Bibliografia/)"
+          # Excepción explícita: exclusivamente tres accesos a fuentes públicas.
+          test "$(git ls-files -- Bibliografia/ | LC_ALL=C sort)" = \
+            "$(printf '%s\n' \
+              Bibliografia/Fundamentos_de_la_Neurociencia.webloc \
+              Bibliografia/Webvision.webloc \
+              Bibliografia/enlaces_publicos.md)"
       - uses: actions/upload-artifact@v4
         with:
           name: notebook-y-figuras
