@@ -156,6 +156,44 @@ En una sola vía, `N=49` implica `147` EDO M0 y `49` filtros (`196` EDO); `N=81`
 
 **Observación fisiológica:** el antagonismo centro–periferia en retina está relacionado con células horizontales y vías laterales. **Esta lectura filtrada no sustituye una implementación mecanística** de la sinapsis horizontal–cono/bipolar, que se reserva para M2.
 
+### Alternativa M1-C-H: malla hexagonal de conos (en evaluación, 13 de noviembre de 2026)
+
+**Propuesta geométrica:** evaluar como primera opción de M1-C una **red triangular de centros celulares con seis vecinos inmediatos**, cuyo diagrama de Voronoi produce celdas aproximadamente hexagonales. **No confundir con el grafo de panal (honeycomb) de vértices de hexágonos, que tiene tres vecinos por vértice.** Una posición computacional sigue representando una unidad M0 (cono, ON, OFF), no un soma con seis sinapsis biológicas ya demostradas.
+
+Para índices axiales enteros `(q,r)` y separación `a>0`, colocar cada posición en coordenadas cartesianas:
+
+```math
+(x_{q,r},y_{q,r})=a\left(q+\frac{r}{2},\frac{\sqrt3}{2}r\right).
+```
+
+Los vecinos de primer orden tienen desplazamientos `(±1,0)`, `(0,±1)`, `(1,-1)` y `(-1,1)`. La distancia al centro de la retícula, expresada en número de anillos, es `d_{hex}(q,r)=max(|q|,|r|,|q+r|)`. Para una región hexagonal de radio entero `R`:
+
+```math
+\mathcal H_R=\{(q,r)\in\mathbb Z^2:\max(|q|,|r|,|q+r|)\le R\},
+\qquad N(R)=1+3R(R+1).
+```
+
+- `R=3`: **37 posiciones**, **111** EDO de voltaje M0 y **37** filtros = **148 EDO** si se filtra una sola vía.
+- `R=4`: **61 posiciones**, **183** EDO M0 y **61** filtros = **244 EDO**.
+- `R=5`: **91 posiciones**, **273** EDO M0 y **91** filtros = **364 EDO**.
+- Alternativa original `7×7` cuadrada: 49 posiciones, 196 EDO con un filtro por posición; comparar bajo resolución, área cubierta y estímulo normalizados, no solo por número de nodos.
+
+Para una **mancha circular real en el plano** calcular siempre `\rho_{q,r}(t)=\sqrt{(x_{q,r}-x_c(t))^2+(y_{q,r}-y_c(t))^2}`, usando distancias euclidianas en unidades espaciales, **no** únicamente el número de anillos hexagonales. Para un campo centro–periferia fenomenológico definir kernels radiales discretos, por ejemplo `G_{\sigma}(i,j)=exp[-|x_i-x_j|^2/(2\sigma^2)]` y luego normalizar cada fila: `K_\sigma(i,j)=G_\sigma(i,j)/\sum_{k\in\mathcal H_R}G_\sigma(i,k)`. Finalmente `S_i^b=\sum_j[K_{\sigma_c}(i,j)-\kappa K_{\sigma_s}(i,j)]u_j^b` con `\sigma_s>\sigma_c`. Esta elección asegura que el filtro anule cambios uniformes si `\kappa=1`, incluso al borde, pero **no** implica células horizontales explícitas. Documentar los efectos de truncar/renormalizar kernels y comparar contra un campo grande para distinguir fronteras del fenómeno.
+
+**Ventajas:** seis direcciones vecinales equivalentes en una retícula triangular ideal, anillos naturales para la lectura pedagógica, muestreo de discos con menor privilegio de ejes cartesianos que una retícula cuadrada de cuatro vecinos. **Limitaciones:** persiste simetría discreta de seis direcciones (no isotropía continua), y una retícula perfectamente periódica no reproduce las irregularidades ni las densidades variables del mosaico retinal. Un patrón hexagonal de fotorreceptores **no** determina automáticamente el grafo químico real de células horizontales, bipolares o amacrinas. Más adelante podría utilizarse una nube de puntos obtenida de datos reales y vecindad de Voronoi/Delaunay sin cambiar el contrato funcional de M0.
+
+**Comparaciones y pruebas necesarias antes de elegirla definitivamente:**
+
+1. Ejecutar el mismo disco, anillo y barra móvil sobre las retículas **cuadrada** y **hexagonal**, igualando escala física/espacial, tamaño de soporte y parámetros. No comparar una cuadrícula de 49 posiciones con 61 como si fueran la misma resolución sin controlar densidad y área.
+2. Probar equivalencia numérica bajo rotaciones de `60°` en una región hexagonal simétrica ideal; estudiar también ángulos intermedios para medir cualquier sesgo de las seis direcciones de la malla.
+3. Probar el fondo uniforme, el campo centro–periferia y todos los nodos cercanos al borde para asegurar que una falta de vecinos no introduzca contraste ficticio.
+4. Mantener **separadas** la geometría de posiciones, el grafo de procesamiento (pesos/distancias de las conexiones) y el mecanismo fisiológico (M0 y futuras horizontales). Una posición a distancia `a` no significa automáticamente una sinapsis.
+5. Medir sensibilidad a pequeñas perturbaciones aleatorias de posiciones (manteniendo identidad y condiciones de borde) para determinar cuánto depende la selectividad del orden perfecto de la malla.
+
+**Motivación biológica pública:** [Sawides, de Castro y Burns (2017), *The organization of the cone photoreceptor mosaic measured in the living human retina*](https://pmc.ncbi.nlm.nih.gov/articles/PMC5290289/), detecta tendencia al empaquetamiento hexagonal y anisotropías locales; [*The Distribution of Cones in the Primate Retina*](https://www.ncbi.nlm.nih.gov/books/NBK235556/) observa islas de organización triangular y defectos en la regularidad. [Webvision, *The Architecture of the Human Fovea*](https://www.webvision.pitt.edu/book/part-ii-anatomy-and-physiology-of-the-retina/the-architecture-of-the-human-fovea/) documenta una organización triangular compacta no perfectamente cristalina.
+
+**Estado de decisión:** alternativa geométrica prioritaria **propuesta**, todavía no aprobada como sustitución definitiva de la cuadrícula 7×7. Se debe demostrar su utilidad con controles de simetría y robustez antes de implementarla en M1-C.
+
 ## 7. Observables cuantitativos
 
 Para el detector de derecha, comparar **el mismo detector** ante `v=+|v|` y `v=-|v|` sobre la misma ventana temporal completa, con respuesta `R≥0`:
