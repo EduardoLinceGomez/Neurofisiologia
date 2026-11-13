@@ -1,8 +1,9 @@
 # Diseño científico M1: de ON/OFF local a campos receptivos y detección de dirección
 
-**Estado:** propuesta v0.1, 9 de noviembre de 2026. **No implementada; pendiente de discusión y aprobación científica del autor.**
+**Estado:** diseño v0.2. La ruta de trabajo 1D → malla hexagonal 2D → robustez fue aceptada el 13 de noviembre de 2026. **M1 sigue sin implementarse y no está calibrado.**
 
 **Seguimiento:** [Issue #10](https://github.com/EduardoLinceGomez/Neurofisiologia/issues/10).  
+**Hoja de ruta:** [preguntas, objetivos, herramientas y etapas de M1](hoja_de_ruta_retina_espacial_m1.md).  
 **Base fisiológica computacional:** [M0 Cono → Bipolar ON/OFF, PR #8](https://github.com/EduardoLinceGomez/Neurofisiologia/pull/8) (en borrador cuando se creó esta especificación).  
 **Otro trabajo independiente:** PR #6, consolidación histórica. No modificar el modelo del bastón ni el material histórico.
 
@@ -192,7 +193,7 @@ Para una **mancha circular real en el plano** calcular siempre `\rho_{q,r}(t)=\s
 
 **Motivación biológica pública:** [Sawides, de Castro y Burns (2017), *The organization of the cone photoreceptor mosaic measured in the living human retina*](https://pmc.ncbi.nlm.nih.gov/articles/PMC5290289/), detecta tendencia al empaquetamiento hexagonal y anisotropías locales; [*The Distribution of Cones in the Primate Retina*](https://www.ncbi.nlm.nih.gov/books/NBK235556/) observa islas de organización triangular y defectos en la regularidad. [Webvision, *The Architecture of the Human Fovea*](https://www.webvision.pitt.edu/book/part-ii-anatomy-and-physiology-of-the-retina/the-architecture-of-the-human-fovea/) documenta una organización triangular compacta no perfectamente cristalina.
 
-**Estado de decisión:** alternativa geométrica prioritaria **propuesta**, todavía no aprobada como sustitución definitiva de la cuadrícula 7×7. Se debe demostrar su utilidad con controles de simetría y robustez antes de implementarla en M1-C.
+**Estado de decisión (13 de noviembre de 2026):** la malla de centros triangulares con territorios hexagonales queda **aceptada como geometría principal de M1-C**. La cuadrícula 7×7 permanece como **control de comparación**, no como la opción principal. Las pruebas de simetría, frontera, resolución y robustez siguen siendo obligatorias; la aprobación geométrica no implica calibración fisiológica ni aceptación automática de resultados.
 
 ## 7. Observables cuantitativos
 
@@ -280,4 +281,4 @@ El repo mantiene protegido `Bibliografia/`; consultar fuentes públicas y enlaza
 3. ¿Hacemos los experimentos centro–anillo en M1-C simultáneamente con movimiento 2D, o validamos el centro–periferia 2D primero? Recomendación: validar primero el patrón estático y la simetría.
 4. ¿Qué variables son experimentalmente observables y cuáles son únicamente latentes/ilustrativas? Documentar antes de cualquier calibración.
 
-**No crear ni fusionar código hasta revisar este diseño.** Los PR #6, #8 y #9 son trabajos independientes; no mezclarlos por conveniencia. Esta especificación debe permanecer revisable y versionada como texto de planificación.
+**La ruta de trabajo está definida, pero esta entrega sigue siendo documental: no implementa M1.** Las próximas implementaciones deberán estar separadas por fases y PR en borrador; no fusionar sin autorización posterior. Los PR #6, #8 y #9 son independientes; no mezclarlos por conveniencia.
